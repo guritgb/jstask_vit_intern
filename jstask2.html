@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sort String Alphabetically</title>
+  </head>
+  <body>
+    <h1>Sort String Alphabetically</h1>
+    <p>Example string: 'webmaster'</p>
+    <p>Expected Output: <span id="output"></span></p>
+
+    <script>
+      function sortString(str) {
+        let sortedStr = str.split("").sort().join("");
+        return sortedStr;
+      }
+
+      let exampleString = "webmaster";
+      document.getElementById("output").textContent = sortString(exampleString);
+    </script>
+  </body>
+</html>

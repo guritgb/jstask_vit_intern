@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Form</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f0f2f5;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #3897f0;
+        font-weight: bold;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+      }
+
+      label {
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="password"],
+      input[type="email"],
+      input[type="number"],
+      textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      input[type="radio"],
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+
+      select {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        background-color: #3897f0;
+        color: white;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      button:hover {
+        background-color: #277bc0;
+      }
+
+      .error {
+        color: red;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Registration Form</h1>
+      <form id="registrationForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required />
+        <div class="error" id="firstNameError"></div>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required />
+        <div class="error" id="lastNameError"></div>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <div class="error" id="emailError"></div>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <div class="error" id="passwordError"></div>
+
+        <label for="confirmPassword">Re-enter Password:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          required
+        />
+        <div class="error" id="confirmPasswordError"></div>
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male" required />
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female" />
+        <label for="female">Female</label>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required />
+        <div class="error" id="ageError"></div>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" required />
+        <div class="error" id="phoneNumberError"></div>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea>
+        <div class="error" id="addressError"></div>
+
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required />
+        <div class="error" id="stateError"></div>
+
+        <label for="country">Country:</label>
+        <select id="country" name="country" required>
+          <option value="">Choose your country</option>
+          <option value="India">India</option>
+          <option value="USA">USA</option>
+        </select>
+        <div class="error" id="countryError"></div>
+
+        <label>Languages Known:</label>
+        <input type="checkbox" id="english" name="languages" value="English" />
+        <label for="english">English</label>
+        <input type="checkbox" id="kannada" name="languages" value="Kannada" />
+        <label for="kannada">Kannada</label>
+        <input type="checkbox" id="hindi" name="languages" value="Hindi" />
+        <label for="hindi">Hindi</label>
+        <input type="checkbox" id="telugu" name="languages" value="Telugu" />
+        <label for="telugu">Telugu</label>
+
+        <input type="checkbox" id="terms" name="terms" required />
+        <label for="terms"
+          >Hereby I declare all the given details are true</label
+        >
+        <div class="error" id="termsError"></div>
+
+        <button type="submit">REGISTER</button>
+      </form>
+      <p>Log in to Ethaus website</p>
+    </div>
+
+    <script>
+      const form = document.getElementById("registrationForm");
+      const firstNameInput = document.getElementById("firstName");
+      const lastNameInput = document.getElementById("lastName");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const confirmPasswordInput = document.getElementById("confirmPassword");
+      const ageInput = document.getElementById("age");
+      const phoneNumberInput = document.getElementById("phoneNumber");
+      const addressInput = document.getElementById("address");
+      const stateInput = document.getElementById("state");
+      const countrySelect = document.getElementById("country");
+      const termsCheckbox = document.getElementById("terms");
+
+      const firstNameError = document.getElementById("firstNameError");
+      const lastNameError = document.getElementById("lastNameError");
+      const emailError = document.getElementById("emailError");
+      const passwordError = document.getElementById("passwordError");
+      const confirmPasswordError = document.getElementById(
+        "confirmPasswordError"
+      );
+      const ageError = document.getElementById("ageError");
+      const phoneNumberError = document.getElementById("phoneNumberError");
+      const addressError = document.getElementById("addressError");
+      const stateError = document.getElementById("stateError");
+      const countryError = document.getElementById("countryError");
+      const termsError = document.getElementById("termsError");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        let isValid = true;
+
+        if (firstNameInput.value.trim() === "") {
+          firstNameError.textContent = "First Name is required";
+          isValid = false;
+        } else {
+          firstNameError.textContent = "";
+        }
+
+        if (lastNameInput.value.trim() === "") {
+          lastNameError.textContent = "Last Name is required";
+          isValid = false;
+        } else {
+          lastNameError.textContent = "";
+        }
+
+        if (
+          emailInput.value.trim() === "" ||
+          !/\S+@\S+\.\S+/.test(emailInput.value)
+        ) {
+          emailError.textContent = "Please enter a valid email address";
+          isValid = false;
+        } else {
+          emailError.textContent = "";
+        }
+
+        if (passwordInput.value.trim() === "") {
+          passwordError.textContent = "Password is required";
+          isValid = false;
+        } else {
+          passwordError.textContent = "";
+        }
+
+        if (
+          confirmPasswordInput.value.trim() === "" ||
+          confirmPasswordInput.value !== passwordInput.value
+        ) {
+          confirmPasswordError.textContent = "Passwords do not match";
+          isValid = false;
+        } else {
+          confirmPasswordError.textContent = "";
+        }
+
+        if (ageInput.value.trim() === "" || ageInput.value <= 0) {
+          ageError.textContent = "Please enter a valid age";
+          isValid = false;
+        } else {
+          ageError.textContent = "";
+        }
+
+        if (phoneNumberInput.value.trim() === "") {
+          phoneNumberError.textContent = "Phone number is required";
+          isValid = false;
+        } else {
+          phoneNumberError.textContent = "";
+        }
+
+        if (addressInput.value.trim() === "") {
+          addressError.textContent = "Address is required";
+          isValid = false;
+        } else {
+          addressError.textContent = "";
+        }
+
+        if (stateInput.value.trim() === "") {
+          stateError.textContent = "State is required";
+          isValid = false;
+        } else {
+          stateError.textContent = "";
+        }
+
+        if (countrySelect.value.trim() === "") {
+          countryError.textContent = "Country is required";
+          isValid = false;
+        } else {
+          countryError.textContent = "";
+        }
+
+        if (!termsCheckbox.checked) {
+          termsError.textContent = "Please accept the terms and conditions";
+          isValid = false;
+        } else {
+          termsError.textContent = "";
+        }
+
+        if (isValid) {
+          alert("Form submitted successfully!");
+          form.reset();
+        }
+      });
+    </script>
+  </body>
+</html>

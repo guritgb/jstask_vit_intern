@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse Number</title>
+  </head>
+  <body>
+    <h1>Reverse a Number</h1>
+    <p>Example x = 32243</p>
+    <p>Expected Output: <span id="output"></span></p>
+
+    <script>
+      function reverseNumber(num) {
+        let str = num.toString();
+
+        let reversedStr = str.split("").reverse().join("");
+
+        let reversedNum = parseInt(reversedStr, 10);
+        return reversedNum;
+      }
+
+      let x = 32243;
+      document.getElementById("output").textContent = reverseNumber(x);
+    </script>
+  </body>
+</html>

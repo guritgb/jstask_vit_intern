@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moving Train</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #train {
+        position: relative;
+        width: 200px;
+        height: 100px;
+        margin: 50px auto;
+        left: 0; /* Add this line */
+      }
+
+      #train img {
+        width: 100%;
+        height: auto;
+      }
+
+      button {
+        padding: 10px 20px;
+        margin: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="train">
+      <img src="train.jpg" alt="Train" />
+    </div>
+
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+      const train = document.getElementById("train");
+      const startButton = document.getElementById("start");
+      const stopButton = document.getElementById("stop");
+
+      let animationId = null;
+
+      startButton.addEventListener("click", () => {
+        animationId = setInterval(() => {
+          train.style.left = (parseInt(train.style.left) || 0) + 5 + "px";
+        }, 100);
+      });
+
+      stopButton.addEventListener("click", () => {
+        clearInterval(animationId);
+      });
+    </script>
+  </body>
+</html>
